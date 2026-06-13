@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joglo Janur | Rumah Makan Tradisional</title>
+  <style>
+    :root {
+      --wood: #6d4b31;
+      --leaf: #4a7a42;
+      --gold: #d4a160;
+      --cream: #f6eee3;
+      --white: #ffffff;
+      --dark: #2a1f18;
+      --text: #2c2318;
+      --shadow: rgba(0, 0, 0, 0.16);
+      font-size: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #f7f1ea 0%, #efe4d7 100%);
+      line-height: 1.65;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle at top left, rgba(212, 161, 96, 0.14), transparent 22%), radial-gradient(circle at bottom right, rgba(74, 122, 66, 0.12), transparent 18%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .container {
+      width: min(1200px, calc(100% - 2rem));
+      margin-inline: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(248, 243, 235, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(109, 75, 49, 0.14);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.3rem;
+      color: var(--wood);
+      letter-spacing: 0.08em;
+    }
+
+    .logo span {
+      background: linear-gradient(135deg, var(--gold), var(--leaf));
+      color: #fff;
+      padding: 0.3rem 0.6rem;
+      border-radius: 0.4rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.75rem;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--leaf);
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--leaf);
+      color: var(--white);
+      padding: 0.9rem 1.2rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 12px 28px rgba(74, 122, 66, 0.18);
+    }
+
+    main {
+      overflow: hidden;
+    }
+
+    .hero {
+      min-height: 88vh;
+      display: grid;
+      place-items: center;
+      padding: 4rem 0 5rem;
+      background: linear-gradient(180deg, rgba(42, 31, 24, 0.65) 0%, rgba(42, 31, 24, 0.15) 45%, rgba(42, 31, 24, 0.70) 100%),
+        url('https://i.pinimg.com/736x/a5/d2/86/a5d286256e1414bf10fb265fac3d0b39.jpg') center/cover no-repeat;
+      color: var(--cream);
+      text-align: center;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.42));
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+      margin-inline: auto;
+      padding: 0 1rem;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+    }
+
+    .hero h1 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(3rem, 5vw, 4.25rem);
+      line-height: 0.98;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 1.1vw, 1.2rem);
+      margin-bottom: 2rem;
+      max-width: 720px;
+      margin-inline: auto;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .hero-buttons a {
+      padding: 1rem 1.5rem;
+      border-radius: 999px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--dark);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+    }
+
+    .hero-buttons a:hover {
+      transform: translateY(-2px);
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .section-heading p {
+      color: var(--leaf);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.65rem;
+    }
+
+    .section-heading h2 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(2rem, 3vw, 2.75rem);
+      color: var(--wood);
+    }
+
+    .cards {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .menu-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .menu-card,
+    .service-card,
+    .testimonial-card {
+      background: var(--white);
+      border-radius: 1.5rem;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      border: 1px solid rgba(109, 75, 49, 0.12);
+    }
+
+    .menu-card {
+      padding: 1.5rem;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .menu-card h3,
+    .service-card h3,
+    .testimonial-card h3 {
+      margin-bottom: 0.75rem;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.45rem;
+      color: var(--wood);
+    }
+
+    .menu-card ul {
+      display: grid;
+      gap: 0.75rem;
+      list-style: none;
+    }
+
+    .menu-card li {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.8rem;
+      font-size: 0.98rem;
+      color: #55463e;
+    }
+
+    .menu-card li span {
+      font-weight: 700;
+      color: var(--leaf);
+    }
+
+    .service-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .service-card {
+      background: linear-gradient(180deg, #f2e6d8 0%, #f9f4ef 100%);
+      position: relative;
+      overflow: hidden;
+      min-height: 300px;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 120px;
+      background: linear-gradient(135deg, rgba(109, 75, 49, 0.14), rgba(74, 122, 66, 0.14));
+    }
+
+    .service-card .service-icon {
+      width: 100%;
+      height: 140px;
+      background-size: cover;
+      background-position: center;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .service-card .service-icon::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(42, 31, 24, 0.14), rgba(255, 255, 255, 0.08));
+    }
+
+    .service-card .service-icon[data-type='area'] { background-image: url('https://i.pinimg.com/736x/4d/67/43/4d67433388a507ba04dc347fa397086e.jpg'); }
+
+    .service-card .service-icon[data-type='box'] { background-image: url('https://i.pinimg.com/1200x/f6/2b/67/f62b67ac108f21e3dcf1780318d1c8a6.jpg'); }
+
+    .service-card .service-icon[data-type='reservasi'] { background-image: url('https://www.total-erp.com/wp-content/uploads/2023/03/Gambar-Total-Parafr-4.jpg'); }
+
+    .service-card .service-icon[data-type='parkir'] { background-image: url('https://i.pinimg.com/1200x/87/d8/a8/87d8a8d20bee5a2c42e8ccb2aee14b9c.jpg'); }
+
+    .service-card .service-body {
+      padding: 1.5rem;
+    }
+
+    .service-card p {
+      color: #5b483d;
+      margin-bottom: 1rem;
+      font-size: 0.98rem;
+    }
+
+    .service-card .badge {
+      display: inline-flex;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(230, 228, 226, 0.12);
+      color: var(--wood);
+      font-weight: 700;
+      font-size: 0.88rem;
+    }
+
+    .testimonial-section {
+      background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      
+      
+      color: #f7f1ea;
+      padding: 3.5rem 0;
+      position: relative;
+    }
+
+    .testimonial-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(42, 31, 24, 0.7);
+      z-index: 1;
+    }
+
+    .testimonial-section > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .testimonial-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial-row {
+      display: flex;
+      width: 300%;
+      transition: transform 0.3s ease;
+    }
+
+    .slide {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+
+    .testimonial-card {
+      padding: 2rem 1.5rem 1.5rem;
+      text-align: left;
+      color: #32271f;
+      min-height: 320px;
+      background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .testimonial-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      z-index: 1;
+    }
+
+    .testimonial-card > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .testimonial-avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: #fff;
+      border: 1.5px solid rgba(109, 75, 49, 0.18);
+      margin: 0 auto 2rem;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .testimonial-avatar span {
+      font-size: 2.25rem;
+      color: var(--wood);
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .testimonial-card p {
+      font-family: 'Segoe UI', sans-serif;
+      color: #54443f;
+      margin-bottom: 1.4rem;
+      font-size: 0.97rem;
+      line-height: 1.75;
+    }
+
+    .rating {
+      display: flex;
+      gap: 0.15rem;
+      margin-bottom: 1rem;
+    }
+
+    .rating span {
+      color: #d4a160;
+      font-size: 1rem;
+    }
+
+    .testimonial-card p {
+      color: #54443f;
+      margin-bottom: 1.4rem;
+      font-size: 0.97rem;
+      line-height: 1.75;
+    }
+
+    .testimonial-card strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: 1rem;
+      color: var(--wood);
+    }
+
+    .testimonial-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.testimonial-avatar img:hover {
+  transform: scale(1.05);
+  transition: 0.3s;
+}
+    .testimonial-card small {
+      color: #736055;
+    }
+
+    .testimonial-nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      pointer-events: none;
+    }
+
+    .testimonial-nav button {
+      pointer-events: auto;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .testimonial-nav button:hover {
+      background: rgba(0, 0, 0, 0.7);
+      border-color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .info-footer {
+      padding: 3.5rem 0 1rem;
+      color: var(--dark);
+    }
+
+    .info-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: 1.5fr 1fr;
+    }
+
+    .info-box,
+    .map-box {
+      background: var(--white);
+      border-radius: 1.25rem;
+      padding: 1.75rem;
+      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(109, 75, 49, 0.1);
+    }
+
+    .info-box h3,
+    .map-box h3 {
+      margin-bottom: 1rem;
+      font-family: Georgia, 'Times New Roman', serif;
+      color: var(--wood);
+    }
+
+    .info-box address,
+    .info-box p {
+      font-style: normal;
+      color: #5f4b3e;
+      line-height: 1.8;
+    }
+
+    .map-frame {
+      width: 100%;
+      min-height: 280px;
+      border-radius: 1rem;
+      overflow: hidden;
+      border: 1px solid rgba(109, 75, 49, 0.15);
+      background: linear-gradient(135deg, rgba(109, 75, 49, 0.12), rgba(74, 122, 66, 0.12));
+      display: grid;
+      place-items: center;
+      color: #5f4b3e;
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    .map-frame span {
+      font-weight: 700;
+    }
+
+    footer {
+      margin-top: 1.5rem;
+      padding: 1.2rem 0 2rem;
+      text-align: center;
+      color: #6d4b31;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 1024px) {
+      .menu-grid,
+      .service-grid,
+      .testimonial-row,
+      .info-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      header {
+        padding: 0 0.5rem;
+      }
+    }
+
+    @media (max-width: 780px) {
+      .topbar {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+
+      nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .cta {
+        order: 2;
+      }
+
+      .hero {
+        min-height: 72vh;
+        padding-top: 3rem;
+      }
+
+      .menu-grid,
+      .service-grid,
+      .testimonial-row,
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonial-nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .logo {
+        gap: 0.5rem;
+        font-size: 1.1rem;
+      }
+
+      .hero h1 {
+        font-size: 2.65rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .service-card .service-body {
+        padding: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container topbar">
+      <a class="logo" href="#home"><span>Joglo Janur</span>Tradisi & Rasa</a>
+      <nav aria-label="Utama">
+        <a href="#home">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#layanan">Layanan</a>
+        <a href="#testimoni">Testimoni</a>
+      </nav>
+      
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="eyebrow">Rumah Makan Joglo Janur</div>
+        <h1>Rasakan Keaslian Rasa Jawa di Joglo Janur</h1>
+        <p>Tradisi kuliner dengan suasana joglo elegan, hidangan berkualitas, dan layanan hangat khas Kediri. Harga mulai Rp 25.000 hingga Rp 50.000 per orang.</p>
+        <div class="hero-buttons">
+          <a class="btn-primary" href="#menu">Lihat Menu</a>
+          <a class="btn-secondary" href="https://wa.me/628135387988" target="_blank" rel="noreferrer">Pesan Sekarang</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" id="menu">
+      <div class="section-heading">
+        <p>Menu Andalan</p>
+        <h2>Hidangan Pilihan Joglo Janur</h2>
+      </div>
+      <div class="cards menu-grid">
+        <article class="menu-card">
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" alt="Makanan Tradisional Indonesia" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
+          <h3>Makanan</h3>
+          <ul>
+            <li>Gurami Asam Manis <span>Rp 35.000</span></li>
+            <li>Sup Iga <span>Rp 38.000</span></li>
+            <li>Oseng-oseng <span>Rp 28.000</span></li>
+            <li>Ayam Bakar / Goreng <span>Rp 30.000</span></li>
+            <li>Ayam Betutu <span>Rp 45.000</span></li>
+            <li>Nasi Goreng Macam-macam <span>Rp 25.000</span></li>
+          </ul>
+        </article>
+        <article class="menu-card">
+          <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=400&q=80" alt="Minuman Segar Indonesia" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
+          <h3>Minuman</h3>
+          <ul>
+            <li>Macam-macam Es Indonesia <span>Rp 18.000</span></li>
+            <li>Jus Buah Segar <span>Rp 15.000</span></li>
+            <li>Jahe Hangat <span>Rp 12.000</span></li>
+            <li>Susu &amp; Kopi <span>Rp 14.000</span></li>
+            <li>Teh Herbal <span>Rp 10.000</span></li>
+          </ul>
+        </article>
+        <article class="menu-card">
+          <img src="https://i.pinimg.com/1200x/a5/94/d4/a594d402c0579745ecf5c3eaeda5371b.jpg" alt="Camilan Tradisional Indonesia" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
+          <h3>Camilan</h3>
+          <ul>
+            <li>Tahu Petis <span>Rp 12.000</span></li>
+            <li>Tahu Goreng <span>Rp 10.000</span></li>
+            <li>Pisang Goreng <span>Rp 12.000</span></li>
+            <li>Mendoan <span>Rp 11.000</span></li>
+            <li>Tahu Walik <span>Rp 13.000</span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="container" id="layanan" style="padding-top: 3.5rem; margin-bottom: 4rem;">
+      <div class="section-heading">
+        <p>Layanan Utama</p>
+        <h2>Area Joglo & Fasilitas Istimewa</h2>
+      </div>
+      <div class="cards service-grid">
+        <article class="service-card">
+          <div class="service-icon" data-type="area"></div>
+          <div class="service-body">
+            <h3>Area Joglo</h3>
+            <p>Rasakan kenyamanan ruang makan joglo tradisional dengan suasana hangat nan elegan.</p>
+            <div class="badge">Tersedia untuk keluarga</div>
+          </div>
+        </article>
+        <article class="service-card">
+          <div class="service-icon" data-type="box"></div>
+          <div class="service-body">
+            <h3>Nasi Box</h3>
+            <p>Paket nasi box siap antar untuk acara keluarga, meeting, dan hajatan.</p>
+            <div class="badge">Praktis & Higienis</div>
+          </div>
+        </article>
+        <article class="service-card">
+          <div class="service-icon" data-type="reservasi"></div>
+          <div class="service-body">
+            <h3>Reservasi</h3>
+            <p>Pesan tempat lebih awal melalui WhatsApp untuk memastikan pengalaman santap terbaik.</p>
+            <div class="badge">Booking Mudah</div>
+          </div>
+        </article>
+        <article class="service-card">
+          <div class="service-icon" data-type="parkir"></div>
+          <div class="service-body">
+            <h3>Parkir</h3>
+            <p>Area parkir luas untuk tamu yang datang dengan kendaraan pribadi.</p>
+            <div class="badge">Aman & Terjangkau</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="testimonial-section" id="testimoni">
+      <div class="container">
+        <div class="section-heading">
+          <p>Suara Pelanggan</p>
+          <h2>Testimoni Pengunjung</h2>
+        </div>
+        <div class="testimonial-wrapper">
+          <div class="testimonial-row">
+            <div class="slide">
+              <article class="testimonial-card">
+                <div class="testimonial-avatar">
+                  <img src="https://i.pinimg.com/736x/55/98/5f/55985f4f8c4774dd281da00d603bb465.jpg" alt="Budi">
+                </div>
+                <p>Makanannya enak banget, suasananya juga nyaman seperti di rumah sendiri.</p>
+                <div class="rating">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+                <strong>Mulyono</strong>
+                <small>Pengunjung</small>
+              </article>
+              <article class="testimonial-card">
+                <div class="testimonial-avatar">
+                  <img src="https://i.pinimg.com/736x/fb/a8/1f/fba81fdf7b0f35f5fadc99871816c8eb.jpg" alt="Siti">
+                </div>
+                <p>Pelayanannya ramah dan cepat, hidangannya juga fresh dan lezat sekali.</p>
+                <div class="rating">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+                <strong>Solo Young</strong>
+                <small>Pengunjung</small>
+              </article>
+              <article class="testimonial-card">
+                <div class="testimonial-avatar">
+                  <img src="https://i.pinimg.com/736x/31/6b/e9/316be99945107f4f42338115e51efdf0.jpg" alt="Ahmad">
+                </div>
+                <p>Suasana joglo yang autentik membuat pengalaman makan jadi lebih spesial.</p>
+                <div class="rating">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+                <strong>Djoko</strong>
+                <small>Pengunjung</small>
+              </article>
+            </div>
+            <div class="slide">
+              <article class="testimonial-card">
+                <div class="testimonial-avatar">
+                  <img src="https://i.pinimg.com/736x/55/98/5f/55985f4f8c4774dd281da00d603bb465.jpg" alt="Dewi">
+                </div>
+                <p>Harga terjangkau dengan kualitas makanan yang premium. Recommended!</p>
+                <div class="rating">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+                <strong>Dewi Lestari</strong>
+                <small>Pengunjung</small>
+              </article>
+              <article class="testimonial-card">
+                <div class="testimonial-avatar">
+                  <img src="https://i.pinimg.com/736x/fb/a8/1f/fba81fdf7b0f35f5fadc99871816c8eb.jpg" alt="Rudi">
+                </div>
+                <p>Tempat yang cocok untuk keluarga, anak-anak juga senang dengan suasananya.</p>
+                <div class="rating">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+                <strong>Rudi Hartono</strong>
+                <small>Pengunjung</small>
+              </article>
+              <article class="testimonial-card">
+                <div class="testimonial-avatar">
+                  <img src="https://i.pinimg.com/736x/31/6b/e9/316be99945107f4f42338115e51efdf0.jpg" alt="Maya">
+                </div>
+                <p>Makanan tradisional dengan cita rasa yang otentik, sangat memuaskan.</p>
+                <div class="rating">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+                <strong>Maya Sari</strong>
+                <small>Pengunjung</small>
+              </article>
+            </div>
+            <div class="slide">
+              <article class="testimonial-card">
+                <div class="testimonial-avatar">
+                  <img src="https://i.pinimg.com/736x/fb/a8/1f/fba81fdf7b0f35f5fadc99871816c8eb.jpg" alt="Lina">
+                </div>
+                <p>Porsi makanannya besar dan harga sangat terjangkau. Worth it!</p>
+                <div class="rating">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+                <strong>Lina Kusuma</strong>
+                <small>Pengunjung</small>
+              </article>
+              <article class="testimonial-card">
+                <div class="testimonial-avatar">
+                  <img src="https://i.pinimg.com/736x/55/98/5f/55985f4f8c4774dd281da00d603bb465.jpg" alt="Fajar">
+                </div>
+                <p>Menu ayam betutunya juara, rasanya pedas dan gurih banget.</p>
+                <div class="rating">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+                <strong>Fajar Wibowo</strong>
+                <small>Pengunjung</small>
+              </article>
+              <article class="testimonial-card">
+                <div class="testimonial-avatar">
+                  <img src="https://i.pinimg.com/736x/31/6b/e9/316be99945107f4f42338115e51efdf0.jpg" alt="Nina">
+                </div>
+                <p>Restoran ini cocok untuk acara keluarga, suasananya tenang dan nyaman.</p>
+                <div class="rating">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+                <strong>Nina Pratiwi</strong>
+                <small>Pengunjung</small>
+              </article>
+            </div>
+          </div>
+          <div class="testimonial-nav">
+            <button aria-label="Testimoni sebelumnya">‹</button>
+            <button aria-label="Testimoni selanjutnya">›</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-footer container">
+      <div class="info-grid">
+        <div class="info-box">
+          <h3>Info & Kontak</h3>
+          <address>
+            Joglo Janur<br />
+            Kepung Tengah, Sukorejo<br />
+            Kecamatan Kepung, Kabupaten Kediri<br />
+            Jawa Timur 64293
+          </address>
+          <p>Kontak: <strong>08135387988</strong> (WhatsApp)</p>
+          <p>Jam Operasional: Senin &ndash; Minggu, 08:00 &ndash; 21:00</p>
+          <p>Harga mulai Rp 25.000 – Rp 50.000 per orang.</p>
+        </div>
+        <div class="map-box">
+          <h3>Peta Lokasi Sederhana</h3>
+          <div class="map-frame">
+            <span>Lokasi Joglo Janur<br />Kediri, Jawa Timur</span>
+          </div>
+        </div>
+      </div>
+      <footer>
+        © 2026 Joglo Janur. Semua hak cipta dilindungi.
+      </footer>
+    </section>
+  </main>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const testimonialRow = document.querySelector('.testimonial-row');
+      const prevBtn = document.querySelector('.testimonial-nav button[aria-label="Testimoni sebelumnya"]');
+      const nextBtn = document.querySelector('.testimonial-nav button[aria-label="Testimoni selanjutnya"]');
+      let currentIndex = 0;
+      const totalSlides = testimonialRow.children.length; // 2 slides
+
+      function updateSlide() {
+        const translateX = -currentIndex * 100;
+        testimonialRow.style.transform = `translateX(${translateX}%)`;
+      }
+
+      prevBtn.addEventListener('click', function() {
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalSlides - 1;
+        updateSlide();
+      });
+
+      nextBtn.addEventListener('click', function() {
+        const previousIndex = currentIndex;
+        currentIndex = (currentIndex < totalSlides - 1) ? currentIndex + 1 : 0;
+
+        const previousSlide = testimonialRow.children[previousIndex];
+        const nextSlide = testimonialRow.children[currentIndex];
+        if (previousSlide && nextSlide && previousSlide !== nextSlide) {
+          nextSlide.innerHTML = '';
+          previousSlide.querySelectorAll('.testimonial-card').forEach(card => {
+            nextSlide.appendChild(card.cloneNode(true));
+          });
+        }
+
+        updateSlide();
+      });
+    });
+  </script>
+</body>
+</html>
